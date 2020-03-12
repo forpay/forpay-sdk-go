@@ -30,7 +30,7 @@ type GetCurrenciesResponse struct {
 	Data []models.Currency `json:"data"`
 }
 
-// CreateGetCurrencyRequest creates get currency requesy.
+// CreateGetCurrencyRequest creates get currency request.
 func CreateGetCurrencyRequest(currencyID uint16) *GetCurrencyRequest {
 	req := request.Get("currencies")
 	req.AddQueryParam("currency_id", strconv.Itoa(int(currencyID)))
