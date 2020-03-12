@@ -56,6 +56,7 @@ type ForpayRequest interface {
 	SetNonce(nonce string)
 
 	AddHeaderParam(key, value string)
+	AddQueryParam(key, value string)
 
 	setRequestBody(body []byte)
 	setRequestBodyFields(fields map[string]interface{})
@@ -244,9 +245,14 @@ func (baseRequest *BaseRequest) SetNonce(nonce string) {
 	baseRequest.nonce = nonce
 }
 
-// AddHeaderParam adds new request header.
+// AddHeaderParam adds request header to the request.
 func (baseRequest *BaseRequest) AddHeaderParam(key, value string) {
 	baseRequest.Headers[key] = value
+}
+
+// AddQueryParam adds query param to the request.
+func (baseRequest *BaseRequest) AddQueryParam(key, value string) {
+	baseRequest.QueryParams[key] = value
 }
 
 func (baseRequest *BaseRequest) setRequestBody(body []byte) {
