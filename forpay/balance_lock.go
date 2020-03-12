@@ -16,6 +16,7 @@ type LockBalanceRequest struct {
 // LockBalanceResponse .
 type LockBalanceResponse struct {
 	*response.BaseResponse
+	Data *models.LockBalance `json:"data"`
 }
 
 // UnlockBalanceRequest .
@@ -26,6 +27,7 @@ type UnlockBalanceRequest struct {
 // UnlockBalanceResponse .
 type UnlockBalanceResponse struct {
 	*response.BaseResponse
+	Data *models.UnlockBalance `json:"data"`
 }
 
 // GetLockedBalanceRequest .
