@@ -25,7 +25,7 @@ func signRequest(appID, keyID string, req request.ForpayRequest, privKey *rsa.Pr
 }
 
 func setAuthHeaders(appID string, req request.ForpayRequest) {
-	req.SetTimestamp(time.Now().UnixNano() / 1000000)
+	req.SetTimestamp(time.Now().UnixNano() / 1e6)
 	req.SetNonce(utils.RandStringRunes(32))
 
 	req.AddHeaderParam("X-Request-AppId", appID)
