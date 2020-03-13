@@ -1,8 +1,8 @@
 # Forpay SDK for Go
 
 [![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://api.forpay.pro/docs/overview)
-[![Build Status](https://travis-ci.org/hactrox/forpay-sdk-go.svg?branch=master)](https://travis-ci.org/github/hactrox/forpay-sdk-go)
 [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/hactrox/forpay-sdk-go/blob/master/LICENSE.txt)
+[![Build Status](https://travis-ci.org/hactrox/forpay-sdk-go.svg?branch=master)](https://travis-ci.org/github/hactrox/forpay-sdk-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hactrox/forpay-sdk-go)](https://goreportcard.com/badge/github.com/hactrox/forpay-sdk-go)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/240e2b56c9624b35b9068aac3813a9a0)](https://www.codacy.com/manual/hactrox/forpay-sdk-go?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hactrox/forpay-sdk-go&amp;utm_campaign=Badge_Grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhactrox%2Fforpay-sdk-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhactrox%2Fforpay-sdk-go?ref=badge_shield)
