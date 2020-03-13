@@ -1,11 +1,13 @@
 package response
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 var _ ForpayResponse = &BaseResponse{}
@@ -14,19 +16,18 @@ var _ ForpayResponse = &BaseResponse{}
 type ForpayResponse interface {
 	IsSuccess() bool
 
-	GetError() error
 	GetHTTPStatus() int
 	GetHTTPHeaders() map[string][]string
 	GetHTTPContentBytes() []byte
 	GetOriginHTTPResponse() *http.Response
+
+	getError() error
 
 	loadResponse(httpResponse *http.Response) error
 }
 
 // BaseResponse implements ForpayResponse interface.
 type BaseResponse struct {
-	ErrorResponse
-
 	httpStatus         int
 	httpHeaders        map[string][]string
 	httpContentBytes   []byte
@@ -34,20 +35,25 @@ type BaseResponse struct {
 	originHTTPResponse *http.Response
 }
 
+func (baseResponse *BaseResponse) String() string {
+	resultBuilder := bytes.Buffer{}
+
+	origin := baseResponse.originHTTPResponse
+	resultBuilder.WriteString(fmt.Sprintf("%s %s\n", origin.Proto, origin.Status))
+
+	for key, values := range baseResponse.httpHeaders {
+		resultBuilder.WriteString(key + ": " + strings.Join(values, ";") + "\n")
+	}
+
+	resultBuilder.WriteString("\n" + baseResponse.httpContentString)
+
+	return resultBuilder.String()
+}
+
 // IsSuccess tells if the http request succeed.
 func (baseResponse *BaseResponse) IsSuccess() bool {
 	httpStatus := baseResponse.GetHTTPStatus()
 	return httpStatus >= 200 && httpStatus < 300
-}
-
-// GetError returns error if request failed.
-func (baseResponse *BaseResponse) GetError() error {
-	errResp := baseResponse.ErrorResponse
-	if errResp.Code == 0 && errResp.Msg == "Success" {
-		return nil
-	}
-
-	return errResp
 }
 
 // GetHTTPStatus returns http status of the response.
@@ -70,6 +76,31 @@ func (baseResponse *BaseResponse) GetOriginHTTPResponse() *http.Response {
 	return baseResponse.originHTTPResponse
 }
 
+func (baseResponse *BaseResponse) getError() error {
+	fields := make(map[string]interface{})
+
+	err := &Error{
+		HTTPStatus: baseResponse.GetHTTPStatus(),
+	}
+
+	e := json.Unmarshal(baseResponse.GetHTTPContentBytes(), &fields)
+	if e != nil {
+		return err
+	}
+
+	err.Code = int(fields["code"].(float64))
+	err.Msg = fields["msg"].(string)
+
+	if err.Code == 0 && err.Msg == "Success" {
+		return nil
+	}
+
+	err.SubCode = fields["sub_code"].(string)
+	err.SubMsg = fields["sub_msg"].(string)
+
+	return err
+}
+
 func (baseResponse *BaseResponse) loadResponse(httpResponse *http.Response) error {
 	defer httpResponse.Body.Close()
 	body, err := ioutil.ReadAll(httpResponse.Body)
@@ -86,6 +117,18 @@ func (baseResponse *BaseResponse) loadResponse(httpResponse *http.Response) erro
 	return nil
 }
 
+func getRequestError(resp ForpayResponse) error {
+	errMsg := "RequestError"
+	errMsg += fmt.Sprintf("\nHttpStatus: %d", resp.GetHTTPStatus())
+
+	respBody := resp.GetHTTPContentBytes()
+	if respBody != nil {
+		errMsg += fmt.Sprintf("\nResponse: %s", string(respBody))
+	}
+
+	return errors.New(errMsg)
+}
+
 // Unmarshal parses the JSON-encodeded data and stores the value in ForpayResponse.
 func Unmarshal(resp ForpayResponse, httpResponse *http.Response) error {
 	err := resp.loadResponse(httpResponse)
@@ -93,19 +136,11 @@ func Unmarshal(resp ForpayResponse, httpResponse *http.Response) error {
 		return err
 	}
 
-	respBody := resp.GetHTTPContentBytes()
-
 	if !resp.IsSuccess() {
-		errMsg := "RequestError"
-		errMsg += fmt.Sprintf("\nHttpStatus: %d", resp.GetHTTPStatus())
-
-		if respBody != nil {
-			errMsg += fmt.Sprintf("\nResponse: %s", string(respBody))
-		}
-
-		return errors.New(errMsg)
+		return getRequestError(resp)
 	}
 
+	respBody := resp.GetHTTPContentBytes()
 	if len(respBody) == 0 {
 		return nil
 	}
@@ -115,7 +150,7 @@ func Unmarshal(resp ForpayResponse, httpResponse *http.Response) error {
 		return err
 	}
 
-	if err := resp.GetError(); err != nil {
+	if err := resp.getError(); err != nil {
 		return err
 	}
 

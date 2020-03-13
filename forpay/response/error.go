@@ -1,27 +1,31 @@
 package response
 
-import "fmt"
+import (
+	"fmt"
+)
 
-// ErrorResponse defines error response structure.
-type ErrorResponse struct {
-	Code    int    `json:"code"`
-	Msg     string `json:"msg"`
-	SubCode string `json:"sub_code"`
-	SubMsg  string `json:"sub_msg"`
+// Error represents forpay api error structure.
+type Error struct {
+	HTTPStatus int
+
+	Code    int
+	Msg     string
+	SubCode string
+	SubMsg  string
 }
 
-func (e ErrorResponse) Error() string {
+func (err *Error) Error() string {
 	errMsg := "ServerError"
 
-	errMsg += fmt.Sprintf("\nCode: %d", e.Code)
-	errMsg += fmt.Sprintf("\nMsg: %s", e.Msg)
-	errMsg += fmt.Sprintf("\nSubCode: %s", e.SubCode)
-	errMsg += fmt.Sprintf("\nSubMsg: %s", e.SubMsg)
+	errMsg += fmt.Sprintf("\nCode: %d", err.Code)
+	errMsg += fmt.Sprintf("\nMsg: %s", err.Msg)
+	errMsg += fmt.Sprintf("\nSubCode: %s", err.SubCode)
+	errMsg += fmt.Sprintf("\nSubMsg: %s", err.SubMsg)
 
 	return errMsg
 }
 
 // IsBusinessFailed tells if request business(action) failed.
-func (e *ErrorResponse) IsBusinessFailed() bool {
-	return e.Code == 1003
+func (err *Error) IsBusinessFailed() bool {
+	return err.Code == 1003
 }
