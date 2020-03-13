@@ -32,11 +32,12 @@ func checkErr(t *testing.T, err error) {
 		return
 	}
 
-	if errResp, ok := err.(response.ErrorResponse); ok {
+	if errResp, ok := err.(*response.Error); ok {
 		if !errResp.IsBusinessFailed() {
 			t.Fatal(errResp)
 		}
 
+		debug(errResp.Error())
 		t.SkipNow()
 		return
 	}
