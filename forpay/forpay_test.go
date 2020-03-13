@@ -9,6 +9,10 @@ import (
 )
 
 func setup(t *testing.T) *Client {
+	if testing.Short() {
+		t.SkipNow()
+	}
+
 	appID := os.Getenv("TEST_APPID")
 	keyID := os.Getenv("TEST_KEYID")
 	filePath := os.Getenv("TEST_PRIVATE_KEY_FILE")
