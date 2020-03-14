@@ -2,7 +2,6 @@ package request
 
 import (
 	"bytes"
-	"crypto/rsa"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -77,8 +76,6 @@ type BaseRequest struct {
 
 	timestamp int64
 	nonce     string
-
-	privKey *rsa.PrivateKey
 
 	QueryParams map[string]string
 	Headers     map[string]string
