@@ -77,10 +77,10 @@ func main() {
     }
 
     // Handle response.
-    fmt.Println(resp.Data.CurrencyID)
-    fmt.Println(resp.Data.Available)
-    fmt.Println(resp.Data.Frozen)
-    fmt.Println(resp.Data.Locked)
+    fmt.Printf("CurrencyID: %d\n", resp.Data.CurrencyID)
+    fmt.Printf("Available: %v\n", resp.Data.Available)
+    fmt.Printf("Frozen: %v\n", resp.Data.Frozen)
+    fmt.Printf("Locked %v\n", resp.Data.Locked)
 }
 ```
 
