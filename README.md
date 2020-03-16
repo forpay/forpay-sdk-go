@@ -4,7 +4,7 @@
 [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/forpay/forpay-sdk-go/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/forpay/forpay-sdk-go.svg?branch=master)](https://travis-ci.org/github/forpay/forpay-sdk-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/forpay/forpay-sdk-go)](https://goreportcard.com/badge/github.com/forpay/forpay-sdk-go)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/240e2b56c9624b35b9068aac3813a9a0)](https://www.codacy.com/manual/forpay/forpay-sdk-go?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=forpay/forpay-sdk-go&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a6b410411514f90a8734635b7c39a15)](https://www.codacy.com/gh/forpay/forpay-sdk-go?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=forpay/forpay-sdk-go&amp;utm_campaign=Badge_Grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fforpay%2Fforpay-sdk-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fforpay%2Fforpay-sdk-go?ref=badge_shield)
 
 ## Installing
