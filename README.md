@@ -1,9 +1,9 @@
 # Forpay SDK for Go
 
 [![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://api.forpay.pro/docs/overview)
-[![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/hactrox/forpay-sdk-go/blob/master/LICENSE)
+[![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/forpay/forpay-sdk-go/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/hactrox/forpay-sdk-go.svg?branch=master)](https://travis-ci.org/github/hactrox/forpay-sdk-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hactrox/forpay-sdk-go)](https://goreportcard.com/badge/github.com/hactrox/forpay-sdk-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/forpay/forpay-sdk-go)](https://goreportcard.com/badge/github.com/forpay/forpay-sdk-go)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/240e2b56c9624b35b9068aac3813a9a0)](https://www.codacy.com/manual/hactrox/forpay-sdk-go?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hactrox/forpay-sdk-go&amp;utm_campaign=Badge_Grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhactrox%2Fforpay-sdk-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhactrox%2Fforpay-sdk-go?ref=badge_shield)
 
@@ -12,13 +12,13 @@
 Use `go get` to retrive the SDK to add it to your `GOPATH` workspace, or project's go module dependencies.
 
 ```
-go get github.com/hactrox/forpay-sdk-go/forpay
+go get github.com/forpay/forpay-sdk-go/forpay
 ```
 
 To update the SDK use go get -u to retrieve the latest version of the SDK.
 
 ```
-go get -u github.com/hactrox/forpay-sdk-go/forpay
+go get -u github.com/forpay/forpay-sdk-go/forpay
 ```
 
 ## Quick Start
@@ -29,8 +29,8 @@ package main
 import (
     "fmt"
 
-    "github.com/hactrox/forpay-sdk-go/forpay"
-    "github.com/hactrox/forpay-sdk-go/forpay/response"
+    "github.com/forpay/forpay-sdk-go/forpay"
+    "github.com/forpay/forpay-sdk-go/forpay/response"
 )
 
 var client *forpay.Client

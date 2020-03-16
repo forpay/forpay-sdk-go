@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/hactrox/forpay-sdk-go/utils"
+	"github.com/forpay/forpay-sdk-go/utils"
 )
 
 func TestTransfer(t *testing.T) {

@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hactrox/forpay-sdk-go/forpay/request"
-	"github.com/hactrox/forpay-sdk-go/forpay/response"
-	"github.com/hactrox/forpay-sdk-go/utils"
+	"github.com/forpay/forpay-sdk-go/forpay/request"
+	"github.com/forpay/forpay-sdk-go/forpay/response"
+	"github.com/forpay/forpay-sdk-go/utils"
 )
 
 var debug utils.Debug
