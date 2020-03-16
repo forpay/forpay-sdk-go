@@ -26,7 +26,7 @@ func init() {
 }
 
 // Version is the SDK version of the package.
-const Version = "0.2.0"
+const Version = "0.9.1"
 
 var (
 	defaultConnectTimeout = 5 * time.Second
