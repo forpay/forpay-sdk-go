@@ -11,13 +11,13 @@
 
 Use `go get` to retrive the SDK to add it to your `GOPATH` workspace, or project's go module dependencies.
 
-```
+``` bash
 go get github.com/forpay/forpay-sdk-go/forpay
 ```
 
 To update the SDK use go get -u to retrieve the latest version of the SDK.
 
-```
+``` bash
 go get -u github.com/forpay/forpay-sdk-go/forpay
 ```
 
